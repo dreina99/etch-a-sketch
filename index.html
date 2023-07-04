@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Etch-a-Sketch</title>
+        <script src = "./script.js" defer></script>
+        <link rel= "stylesheet" href = "./style.css">
+    </head>
+    <body>
+        <h1>Etch-a-Sketch</h1>
+        <div class = "interact">
+            <div class = "options">
+                <div class = "colors">
+                    <input type = "checkbox" id = "black">
+                    <label for ="black">Black</label>
+
+                    <input type = "checkbox" id = "random">
+                    <label for="random">Random</label>
+
+                    <input type = "checkbox" id = "select">
+                    <label for = "select">Select Color</label>
+                </div>
+                <div class = "slide-container">
+                    <input type = "range" min="1x1" max="100x100" value="50" class="slider" id="myRange">
+                    <label for = "myRange" id = "slider-value">50x50</label>
+                </div>
+                <button class = "clear">Clear</button>
+            </div>
+            <div class = "container">
+            </div>
+        </div>
+    </body>
+</html>
