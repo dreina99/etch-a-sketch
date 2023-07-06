@@ -8,7 +8,6 @@ slider = document.querySelector('#myRange')
 sliderLabel = document.querySelector('#sliderLabel')
 
 let fillColor = "#000"
-let prevColor = "#000"
 
 /* Draw initial 50 x 50 grid */
 let drawGrid = (dim) => {
@@ -59,11 +58,6 @@ rnbwCheck.addEventListener('change', () => {
 eraserCheck.addEventListener('change', () => {
     blkCheck.checked = false
     rnbwCheck.checked = false
-
-    if(eraserCheck.checked == true)
-        prevColor = fillColor
-    else if(eraserCheck.checked == false)
-        fillColor = prevColor
 })
 
 let colorPickerFunc = () => {
@@ -99,6 +93,13 @@ slider.addEventListener('change', () => {
     squares.forEach(square => {
         square.addEventListener('mousemove', changeColor)
     })
+    // if eraser checked on clear, set color to black
+    if (eraserCheck.checked == true) {
+        eraserCheck.checked = false
+        blkCheck.checked = true
+        fillColor = "#000"
+    }
+
 })
 
 
