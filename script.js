@@ -18,6 +18,7 @@ let drawGrid = (dim) => {
         for (let j = 0; j < dim; j++) {
             let square = document.createElement('div')
             square.classList.add('square')
+            square.style.backgroundColor = "#FFF"
             row.appendChild(square)
         }
     }
@@ -93,13 +94,6 @@ slider.addEventListener('change', () => {
     squares.forEach(square => {
         square.addEventListener('mousemove', changeColor)
     })
-    // if eraser checked on clear, set color to black
-    if (eraserCheck.checked == true) {
-        eraserCheck.checked = false
-        blkCheck.checked = true
-        fillColor = "#000"
-    }
-
 })
 
 

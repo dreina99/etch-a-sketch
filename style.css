@@ -1,7 +1,23 @@
+@font-face {
+    font-family: 'Dagger';
+    src: url('./DAGGERSQUARE.otf');
+}
+* {
+    color: #B30D02;
+    font-family: 'Dagger', sans-serif;
+}
+
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #BDBDBD;
+   
+    font-weight: 400;
+}
+
+p {
+    margin: 0;
 }
 
 .bottom-options {
@@ -14,10 +30,8 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    border: 0.25px solid black;
-    box-shadow: 2px 2px rgba(0, 0, 0, 0.2)
+    border: 10px solid #616161;
 }
-
 
 .row {
     display: flex;
@@ -27,19 +41,17 @@ body {
 .interact {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #picker-div {
     display: flex;
     gap: 10px;
-    align-items: center;
-}
-
-.options {
-    border: 2px solid black;
-    padding: 10px;
-    display: flex;
     align-items: center;
 }
 
@@ -55,17 +67,20 @@ body {
     border: 0.25px solid black;
 }
 
-input[type='radio']{ display:none; }
-label {
-  display:inline-block;
-  padding:3px;
-  border:1px solid #e0e0e0;
-  border-radius:3px;
-  background-color:#F0F0F0;
-  width:10em;
+input[type='radio']{ 
+    display:none; 
+}
+
+label, #picker-div, .clear {
+  border:1px solid #9A0002;
+  background-color: black;
   text-align:center;
 }
 
-#eraser {
-    background-color: yellow;
+label {
+    padding: 4px;
+}
+
+#colorPicker {
+    border: none;
 }
