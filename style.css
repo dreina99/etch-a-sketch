@@ -24,6 +24,12 @@ body {
     gap: 25px;
 }
 
+#picker-div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
 .options {
     border: 2px solid black;
     padding: 10px;
@@ -41,8 +47,4 @@ body {
 .square {
     flex: 1;
     border: 0.25px solid black;
-}
-
-.b-color {
-    background-color: black;
 }

@@ -2,9 +2,12 @@ containerDiv = document.querySelector('.container')
 clearBtn = document.querySelector('.clear')
 blkCheck = document.querySelector('#black')
 rnbwCheck = document.querySelector('#random')
+slider = document.querySelector('#myRange')
+sliderLabel = document.querySelector('#sliderLabel')
 
 let fillColor = "#000"
 
+/* Draw initial 50 x 50 grid */
 let drawGrid = (dim) => {
     for(let i = 0; i < dim; i++) {
         let row = document.createElement('div')
@@ -17,7 +20,6 @@ let drawGrid = (dim) => {
         }
     }
 }
-
 drawGrid(50)
 
 function changeColor(e) {
@@ -27,11 +29,6 @@ function changeColor(e) {
     e.target.style.backgroundColor = fillColor
 }
 
-squares = document.querySelectorAll('.square')
-squares.forEach(square => {
-    square.addEventListener('mousemove', changeColor)
-})
-
 function removeColor () {
     squares.forEach(square => {
         square.style.backgroundColor = "#FFF"
@@ -39,11 +36,34 @@ function removeColor () {
 }
 
 blkCheck.addEventListener('change', function() {
+    removeColor()
+    rnbwCheck.checked = false
     if(this.checked) {
         fillColor = "#000"
     }
 })
 
+rnbwCheck.addEventListener('change', function() {
+    removeColor()
+    blkCheck.checked = false
+})
+
 clearBtn.addEventListener('click', removeColor)
 
+/* Slider Functions */
+slider.addEventListener('change', () => {
+    sliderLabel.textContent = slider.value + 'x' + slider.value
+    containerDiv.innerHTML = ""
+    drawGrid(slider.value)
+
+    squares = document.querySelectorAll('.square')
+    squares.forEach(square => {
+        square.addEventListener('mousemove', changeColor)
+    })
+})
+
+squares = document.querySelectorAll('.square')
+squares.forEach(square => {
+    square.addEventListener('mousemove', changeColor)
+})
 
