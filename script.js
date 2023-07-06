@@ -49,6 +49,7 @@ function removeColor () {
 blkCheck.addEventListener('change', () => {
     rnbwCheck.checked = false
     eraserCheck.checked = false
+    blkCheck.focus()
 })
 
 rnbwCheck.addEventListener('change', () => {
