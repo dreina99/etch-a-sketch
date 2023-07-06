@@ -29,6 +29,10 @@ p {
     flex-direction: column;
 }
 
+.boxShadow {
+    box-shadow: 0 0 10px white;
+}
+
 /* HEADER STYLES */
 .options {
     display: flex;
@@ -171,3 +175,4 @@ input[type='range']::-webkit-slider-thumb {
 .clear:hover {
     border-color: white;
 }
+

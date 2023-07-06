@@ -1,13 +1,18 @@
 containerDiv = document.querySelector('.container')
 clearBtn = document.querySelector('.clear')
 blkCheck = document.querySelector('#black')
+blkLabel = document.querySelector('#blackLabel')
 rnbwCheck = document.querySelector('#random')
+rnbwLabel = document.querySelector('#randomLabel')
 eraserCheck = document.querySelector('#eraser')
+eraserLabel = document.querySelector('#eraserLabel')
+pickerDiv = document.querySelector('#picker-div')
 colorPicker = document.querySelector('#colorPicker')
 slider = document.querySelector('#myRange')
 sliderLabel = document.querySelector('#sliderLabel')
 
 let fillColor = "#000"
+blkLabel.classList.add('boxShadow')
 
 /* Draw initial 50 x 50 grid */
 let drawGrid = (dim) => {
@@ -34,7 +39,10 @@ function changeColor(e) {
         fillColor = "#000"
     } else if (eraserCheck.checked) {
         fillColor = "#FFF"
+    } else {
+        fillColor = colorPicker.value
     }
+
     e.target.style.backgroundColor = fillColor
 }
 
@@ -49,17 +57,42 @@ function removeColor () {
 blkCheck.addEventListener('change', () => {
     rnbwCheck.checked = false
     eraserCheck.checked = false
-    blkCheck.focus()
+    
+    blkLabel.classList.add('boxShadow')
+    rnbwLabel.classList.remove('boxShadow')
+    eraserLabel.classList.remove('boxShadow')
+    pickerDiv.classList.remove('boxShadow')
 })
 
 rnbwCheck.addEventListener('change', () => {
     blkCheck.checked = false
     eraserCheck.checked = false
+
+    rnbwLabel.classList.add('boxShadow')
+    blkLabel.classList.remove('boxShadow')
+    eraserLabel.classList.remove('boxShadow')
+    pickerDiv.classList.remove('boxShadow')
 })
 
 eraserCheck.addEventListener('change', () => {
     blkCheck.checked = false
     rnbwCheck.checked = false
+
+    eraserLabel.classList.add('boxShadow')
+    blkLabel.classList.remove('boxShadow')
+    rnbwLabel.classList.remove('boxShadow')
+    pickerDiv.classList.remove('boxShadow')
+})
+
+pickerDiv.addEventListener('click', () => {
+    blkCheck.checked = false
+    rnbwCheck.checked = false
+    eraserCheck.checked = false
+
+    pickerDiv.classList.add('boxShadow')
+    blkLabel.classList.remove('boxShadow')
+    rnbwLabel.classList.remove('boxShadow')
+    eraserLabel.classList.remove('boxShadow')
 })
 
 let colorPickerFunc = () => {
@@ -79,7 +112,9 @@ clearBtn.addEventListener('click', () => {
     // if eraser checked on clear, set color to black
     if (eraserCheck.checked == true) {
         eraserCheck.checked = false
+        eraserLabel.classList.remove('boxShadow')
         blkCheck.checked = true
+        blkLabel.classList.add('boxShadow')
         fillColor = "#000"
     }
 })
