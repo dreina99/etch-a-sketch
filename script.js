@@ -2,10 +2,13 @@ containerDiv = document.querySelector('.container')
 clearBtn = document.querySelector('.clear')
 blkCheck = document.querySelector('#black')
 rnbwCheck = document.querySelector('#random')
+eraserCheck = document.querySelector('#eraser')
+colorPicker = document.querySelector('#colorPicker')
 slider = document.querySelector('#myRange')
 sliderLabel = document.querySelector('#sliderLabel')
 
 let fillColor = "#000"
+let prevColor = "#000"
 
 /* Draw initial 50 x 50 grid */
 let drawGrid = (dim) => {
@@ -22,9 +25,15 @@ let drawGrid = (dim) => {
 }
 drawGrid(50)
 
+
+/* Helper functions for color change */
 function changeColor(e) {
     if(rnbwCheck.checked) {
         fillColor = "#" + Math.floor(Math.random() * 16777215).toString(16)
+    } else if (blkCheck.checked) {
+        fillColor = "#000"
+    } else if (eraserCheck.checked) {
+        fillColor = "#FFF"
     }
     e.target.style.backgroundColor = fillColor
 }
@@ -35,20 +44,50 @@ function removeColor () {
     })
 }
 
-blkCheck.addEventListener('change', function() {
-    removeColor()
+
+/* Checkbox event listeners */
+blkCheck.addEventListener('change', () => {
     rnbwCheck.checked = false
-    if(this.checked) {
+    eraserCheck.checked = false
+})
+
+rnbwCheck.addEventListener('change', () => {
+    blkCheck.checked = false
+    eraserCheck.checked = false
+})
+
+eraserCheck.addEventListener('change', () => {
+    blkCheck.checked = false
+    rnbwCheck.checked = false
+
+    if(eraserCheck.checked == true)
+        prevColor = fillColor
+    else if(eraserCheck.checked == false)
+        fillColor = prevColor
+})
+
+let colorPickerFunc = () => {
+    blkCheck.checked = false
+    rnbwCheck.checked = false
+    eraserCheck.checked = false
+
+    fillColor = colorPicker.value
+}
+
+colorPicker.addEventListener('input', colorPickerFunc)
+colorPicker.addEventListener('click', colorPickerFunc)
+
+
+clearBtn.addEventListener('click', () => {
+    removeColor()
+    // if eraser checked on clear, set color to black
+    if (eraserCheck.checked == true) {
+        eraserCheck.checked = false
+        blkCheck.checked = true
         fillColor = "#000"
     }
 })
 
-rnbwCheck.addEventListener('change', function() {
-    removeColor()
-    blkCheck.checked = false
-})
-
-clearBtn.addEventListener('click', removeColor)
 
 /* Slider Functions */
 slider.addEventListener('change', () => {
@@ -62,6 +101,8 @@ slider.addEventListener('change', () => {
     })
 })
 
+
+/* Updating square colors */
 squares = document.querySelectorAll('.square')
 squares.forEach(square => {
     square.addEventListener('mousemove', changeColor)
